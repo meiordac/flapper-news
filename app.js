@@ -1,7 +1,15 @@
 var app = angular.module('flapperNews',[]);
+
+app.factory('posts', [function(){
+  // service body
+  var _posts={posts:[]};
+  return _posts;
+}])
+
 app.controller('MainCtrl', [
 '$scope',
-function($scope){
+'posts',
+function($scope, posts){
 	$scope.test='Hello world!';
 
 	$scope.posts = [
