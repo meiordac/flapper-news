@@ -12,6 +12,13 @@ app.config([
 			controller: 'MainCtrl'
 		});
 
+		$stateProvider
+		.state('posts',{
+			url: '/posts/{id}',
+			templateUrl: '/posts.html',
+			controller: 'PostsCtrl'
+		});
+
 		$urlRouterProvider.otherwise('home');
 	}]);
 
@@ -20,6 +27,14 @@ app.factory('posts', [function(){
 
   return _posts;
 }])
+
+app.controller('PostsCtrl'[
+	'$scope',
+	'$stateParams',
+	'posts',
+	function($scope, $stateParams, posts){
+
+	}]);
 
 app.controller('MainCtrl', [
 '$scope',
