@@ -22,11 +22,21 @@ app.config([
 		$urlRouterProvider.otherwise('home');
 	}]);
 
-app.factory('posts', [function(){
-  var _posts={posts:[]};
+app.factory('posts', ['$http', function($http){
 
-  return _posts;
-}])
+	var o = {
+    posts: []
+  };
+
+  o.getAll = function() {
+    return $http.get('/posts').success(function(data){
+      angular.copy(data, o.posts);
+    });
+  };
+
+    return o;
+
+}]);
 
 app.controller('PostsCtrl'[
 	'$scope',
