@@ -15,6 +15,11 @@
       <ui-view></ui-view>
 
       <div ng-repeat="post in posts | orderBy:'-upvotes'">
+
+      <span class="glyphicon glyphicon-thumbs-up"
+          ng-click="incrementUpvotes(post)"></span>
+        {{post.upvotes}}
+
         <span style="font-size:20px; margin-left:10px;">
           <a ng-show="post.link" href="{{post.link}}">
             {{post.title}}
@@ -23,9 +28,11 @@
             {{post.title}}
           </span>
         </span>
-      <span class="glyphicon glyphicon-thumbs-up"
-          ng-click="incrementUpvotes(post)"></span>
-        {{post.upvotes}}
+
+        <span>
+        <a href="#/posts/{{post._id}}">Comments</a>
+        </span>
+
       </div>
 
       <form ng-submit="addPost()"
@@ -54,9 +61,6 @@
   <div class="page-header">
     <h1>Flapper News</h1>
   </div>
-<span>
-  <a href="#/posts/{{post._id}}">Comments</a>
-</span>
   <!-- rest of template -->
 </script>
 
