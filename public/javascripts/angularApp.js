@@ -51,6 +51,13 @@ o.upvote = function(post) {
       post.upvotes += 1;
     });
 };
+
+o.get = function(id) {
+  return $http.get('/posts/' + id).then(function(res){
+    return res.data;
+  });
+};
+
     return o;
 
 }]);
