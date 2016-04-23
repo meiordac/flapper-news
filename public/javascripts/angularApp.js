@@ -39,6 +39,12 @@ app.factory('posts', ['$http', function($http){
     });
   };
 
+    o.create = function(post) {
+  return $http.post('/posts', post).success(function(data){
+    o.posts.push(data);
+  });
+};
+
     return o;
 
 }]);
@@ -59,7 +65,7 @@ app.controller('PostsCtrl'[
 				upvotes: 0
 			});
 			$scope.body = '';
-}; 
+		}; 
 
 	}]);
 
@@ -73,7 +79,12 @@ function($scope, posts){
 	$scope.addPost= function()
 	{
 		if(!$scope.title || $scope.title === ''){ return; }
-		$scope.posts.push({title: $scope.title, link: $scope.link, upvotes: 0});
+
+		posts.create({
+			title: $scope.title, 
+			link: $scope.link,
+		});
+
 		$scope.title='';
 		$scope.link='';
 	};
