@@ -61,6 +61,13 @@ o.upvote = function(post) {
     });
 };
 
+o.upvoteComment = function(post, comment) {
+  return $http.put('/posts/' + post._id + '/comments/'+ comment._id + '/upvote')
+    .success(function(data){
+      comment.upvotes += 1;
+    });
+};
+
 o.get = function(id) {
   return $http.get('/posts/' + id).then(function(res){
     return res.data;
@@ -79,6 +86,10 @@ app.controller('PostsCtrl'[
 	function($scope, $stateParams, posts, post){
 
 		$scope.post=post;
+
+		$scope.incrementUpvotes = function(comment){
+			posts.upvoteComment(post, comment);
+		};
 
 		$scope.addComment = function(){
 			if($scope.body === '') { return; }
