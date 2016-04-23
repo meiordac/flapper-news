@@ -50,6 +50,10 @@ app.factory('posts', ['$http', function($http){
     });
   };
 
+  o.addComment = function(id, comment) {
+  return $http.post('/posts/' + id + '/comments', comment);
+};
+
 o.upvote = function(post) {
   return $http.put('/posts/' + post._id + '/upvote')
     .success(function(data){
