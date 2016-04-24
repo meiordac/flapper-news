@@ -6,6 +6,7 @@ var Comment= mongoose.model('Comment');
 var User= mongoose.model('User');
 var passport = require('passport');
 var jwt = require('express-jwt');
+var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 router.param('post', function(req, res, next, id) {
   var query = Post.findById(id);
@@ -37,7 +38,7 @@ router.get('/', function(req, res, next) {
 });
 
 //posts
-router.get('/posts', auth, function(req, res, next) {
+router.get('/posts', function(req, res, next) {
   Post.find(function(err, posts){
     if(err){ return next(err); }
 
