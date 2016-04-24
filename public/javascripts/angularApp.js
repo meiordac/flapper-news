@@ -162,9 +162,11 @@ app.controller('PostsCtrl', [
 	'$stateParams',
 	'posts',
 	'post',
+	'auth',
 	function($scope, $stateParams, posts, post){
 
 		$scope.post=post;
+		$scope.isLoggedIn = auth.isLoggedIn;
 
 		$scope.incrementUpvotes = function(comment){
 			posts.upvoteComment(post, comment);
@@ -186,9 +188,11 @@ app.controller('PostsCtrl', [
 app.controller('MainCtrl', [
 '$scope',
 'posts',
+'auth',
 function($scope, posts){
 
 	$scope.posts = posts.posts;
+	$scope.isLoggedIn = auth.isLoggedIn;
 
 	$scope.addPost= function()
 	{
