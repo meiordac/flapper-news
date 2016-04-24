@@ -78,7 +78,7 @@ o.get = function(id) {
 
 }]);
 
-app.controller('PostsCtrl'[
+app.controller('PostsCtrl', [
 	'$scope',
 	'$stateParams',
 	'posts',
