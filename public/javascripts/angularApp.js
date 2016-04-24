@@ -78,6 +78,12 @@ o.get = function(id) {
 
 }]);
 
+app.factory('auth', ['$http', '$window', function($http, $window){
+   var auth = {};
+
+  return auth;
+}])
+
 app.controller('PostsCtrl', [
 	'$scope',
 	'$stateParams',
