@@ -126,7 +126,7 @@ function($scope, posts){
 
 	$scope.incrementUpvotes = function(post)
 	{
-		posts.upvotes(post);
+		posts.upvote(post);
 	};
 
 }]); 
